@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>上班不要看球賽結帳頁面</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/headers.css">
+  <style>
+    #progressbar {
+      overflow: hidden;
+      color: lightgrey
+    }
+
+    #progressbar .active {
+      color: #6c757d
+    }
+
+    #progressbar li {
+      list-style-type: none;
+      font-size: .75rem;
+      width: 33%;
+      float: left;
+      position: relative;
+    }
+
+    #progressbar #step1:before {
+      content: "1"
+    }
+
+    #progressbar #step2:before {
+      content: "2"
+    }
+
+    #progressbar #step3:before {
+      content: "3"
+    }
+
+    #progressbar li:before {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: block;
+      font-size: .75rem;
+      color: #ffffff;
+      background: lightgray;
+      margin: 0 auto 5px auto;
+      align-items: center;
+    }
+
+    #progressbar li.active:before {
+      background: #6c757d
+    }
+
+    .progress-bar {
+      background-color: #6c757d
+    }
+  </style>
+</head>
+
+<body>
+<!-- 導入共用 header -->
+<div class="headerPage"></div>
+
+<!-- 開發畫面 -->
+<main>
+  <div class="bg-body-tertiary">
+    <div class="container py-5">
+
+      <!-- progress bar -->
+      <div class="row">
+        <div class="col-12 col-md-5 col-lg-4 col-xl-3">
+          <h1 class="mb-3 mb-lg-0 me-lg-auto link-body-emphasis">
+            付款資料</h1>
+        </div>
+        <div class="col-12 col-md-6 col-lg-6 col-xl-7 text-center p-0 mx-0">
+          <ul id="progressbar" class="p-0 mb-1">
+            <li class="active" id="step1"><strong>訂單明細確認</strong></li>
+            <li class="active" id="step2"><strong>填寫付款資料</strong></li>
+            <li id="step3"><strong>購買完成</strong></li>
+          </ul>
+          <div class="progress" role="progressbar" aria-label="Example 1px high" aria-valuenow="calc(100/6 * 3)"
+               aria-valuemin="0" aria-valuemax="100" style="height: 1px">
+            <div class="progress-bar" style="width: calc(100%/6 * 3)"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- receipt -->
+      <div class="row mt-5">
+
+        <!-- address etc... -->
+        <div class="col-md-7 col-lg-8">
+          <h4 class="mb-3">Shipping method</h4>
+
+          <div class="my-3 shippingMethod">
+            <div class="form-check mb-3">
+              <input id="homeDelivery" name="shippingMethod" type="radio" class="form-check-input" checked required>
+              <label class="form-check-label" for="homeDelivery">宅配</label>
+              <div class="row g-3 mt-1">
+                <div id="twzipcode" class="col-12">
+                  <div class="row">
+                    <div class="col-md-5 county mb-2">
+                      <label for="county" class="form-label">縣市</label>
+                      <div data-role="county" data-style="Style Name form-control" data-value="臺北市"
+                           id="county"></div>
+                    </div>
+                    <div class="col-md-5 district mb-2">
+                      <label for="district" class="form-label">鄉鎮市區</label>
+                      <div data-role="district" data-style="Style Name form-control" data-value="信義區"
+                           id="district"></div>
+                    </div>
+                    <div class="col-md-2 zipcode mb-2">
+                      <label for="zipcode" class="form-label">郵遞區號</label>
+                      <div data-role="zipcode" data-style="Style Name form-control" data-value="110" id="zipcode"></div>
+                      <div class="invalid-feedback">
+                        Please enter your shipping address.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <label for="address" class="form-label">地址</label>
+                  <input type="text" class="form-control" id="address" placeholder="AAA街BBB巷CCC號DDD樓">
+                  <div class="invalid-feedback">
+                    請輸入收件地址
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--            <div class="form-check">-->
+            <!--              <input id="inStorePickup" name="shippingMethod" type="radio" class="form-check-input" required>-->
+            <!--              <label class="form-check-label" for="inStorePickup">超商取貨 (統一超商)</label>-->
+            <!--              <div class="row g-3 mt-1">-->
+            <!--                <div class="col-md-2">-->
+            <!--                  <button class="btn btn-secondary btn-md" type="button" id="chooseConvenienceStore">選擇門市</button>-->
+            <!--                </div>-->
+            <!--                <div class="col-auto">-->
+            <!--                  <input type="text" class="form-control" id="convenienceStore" placeholder="請選擇門市" required-->
+            <!--                         disabled>-->
+            <!--                </div>-->
+            <!--              </div>-->
+            <!--            </div>-->
+          </div>
+
+          <hr class="my-4">
+
+          <h4 class="mb-3">Payment</h4>
+
+          <div class="my-3 paymentMethod">
+            <div class="form-check">
+              <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+              <label class="form-check-label" for="credit">線上付款</label>
+            </div>
+            <div class="form-check">
+              <input id="cashOnDelivery" name="paymentMethod" type="radio" class="form-check-input" required>
+              <!--              <label class="form-check-label" for="cashOnDelivery">超商取貨付款、貨到付款</label>-->
+              <label class="form-check-label" for="cashOnDelivery">貨到付款</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- receipt details -->
+        <div class="col-md-5 col-lg-4" id="itemsToCheckout">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-secondary">Your cart</span>
+            <span class="badge bg-secondary rounded-pill">0</span>
+          </h4>
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total (NTD)</span>
+              <strong>$0</strong>
+            </li>
+          </ul>
+          <button class="w-100 btn btn-secondary btn-lg continueToCheckout" type="button">Continue to checkout</button>
+        </div>
+      </div>
+      <section id="result"></section>
+    </div>
+  </div>
+</main>
+
+<!-- 導入共用 footer -->
+<div class="footerPage"></div>
+<script src="../jquery/jquery-3.7.1.min.js"></script>
+<script src="../vendors/TWzipcode/jquery.twzipcode.min.js"></script>
+<script>
+  $(".headerPage").load("../layout/header.html");
+  $(".footerPage").load("../layout/footer.html");
+
+  let user;
+
+  // 從購物車帶來的結帳清單
+  $(function () {
+    user = JSON.parse(sessionStorage.getItem("user"));
+    if ((!user) || !user.userId) {
+      Swal.fire({
+        icon: 'warning',
+        title: '尚未登入',
+        text: '請先登入再進行購買'
+      })
+        .then(() => {
+          window.location.href = "../login.html";
+        })
+    } else if (!user.status) {
+      Swal.fire({
+        icon: 'warning',
+        title: '尚未開通',
+        text: '請先開通帳號再進行購買'
+      })
+        .then(() => {
+          window.location.href = "./shop.html";
+        })
+    } else {
+      let savedElement = sessionStorage.getItem("itemsToCheckout");
+      if (savedElement !== null) {
+        $("#itemsToCheckout").replaceWith(savedElement);
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: '尚未選購商品',
+          text: '請先選購再進行結帳'
+        })
+          .then(() => {
+            window.location.href = "./shop.html";
+          })
+      }
+    }
+  })
+
+  // input內容是否填寫的判斷
+  function validateFields(elements, checkNumber = false) {
+    let allValid = true;
+    elements.each(function () {
+      let value = $(this).val().trim();
+      let isValid = value !== "";
+
+      if (checkNumber) {
+        isValid = isValid && !isNaN(value);
+      }
+
+      if (isValid) {
+        $(this).addClass("is-valid").removeClass("is-invalid");
+      } else {
+        $(this).addClass("is-invalid").removeClass("is-valid");
+        allValid = false;
+      }
+    });
+    return allValid;
+  }
+
+  // todo: 如果有超商取貨的話，再打開來判斷
+  // $(document).on("click", "div.shippingMethod", function (e) {
+  //   if (!$(e.target).is('input[type="radio"]')) {
+  //     $(e.target).closest("div.form-check").find("input[type='radio']").prop("checked", true);
+  //   }
+  // })
+
+  // todo: 超商電子地圖
+  // $("#chooseConvenienceStore").on("click", function () {
+  //   fetch("https://logistics-stage.ecpay.com.tw/Express/map", {
+  //     method: "POST",
+  //     // mode: 'no-cors',
+  //     headers: {
+  //       "Accept": "text/html",
+  //       "Content-Type": "application/x-www-form-urlencoded",
+  //     },
+  //     body: JSON.stringify({
+  //       "MerchantID": "3002599",
+  //       "LogisticsType": "CVS",
+  //       "LogisticsSubType": "UNIMARTC2C",
+  //       "IsCollection": "N",
+  //       "ServerReplyURL": "./receipt.html"
+  //     })
+  //   })
+  //     .then(resp => resp.html)
+  //     .then(body => {
+  //       sessionStorage.setItem("CVSAddress", body);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     })
+  // })
+
+  $('#twzipcode').twzipcode();
+  $('#twzipcode div selector').twzipcode({
+    'zipcodeSel': 110,
+    'readonly': true
+  });
+
+  $(document).on("click", ".continueToCheckout", async function () {
+    let isValid = validateFields($("input#address, div#zipcode input"));
+
+    if (!isValid) {
+      Swal.fire({
+        icon: "warning",
+        title: "請再確認",
+        text: "請輸入完整資料！"
+      });
+    } else {
+      // 更新商品價格後，如果有變動，用alert
+      let itemIds = [];
+      $("ul.itemsToCheckoutList li").each(function () {
+        itemIds.push($(this).find("h6").attr("data-item-id"));
+      })
+
+      await updateItemPriceInCart(itemIds)
+        .then(() => {
+          let [county, district, zipcode] = $('#twzipcode').twzipcode('get', ['county', 'district', 'zipcode']);
+          let address = zipcode + county + district + $('#address').val();
+          let itemsInCheckoutForEcpay = [];
+          let receipts = [];
+
+          $("ul.itemsToCheckoutList li").each(function () {
+            itemsInCheckoutForEcpay.push(
+              $(this).find("h6").text() + ", " + $(this).find("small").text()
+            );
+            receipts.push({
+              // receiptId
+              // orderId
+              "itemInfoId": parseInt($(this).find("small").attr("data-iteminfo-id")),
+              "receiptItemCount": parseInt($(this).find("span").attr("data-itemcountsincart")),
+              "receiptItemPrice": parseInt($(this).find("span").attr("data-itempriceincart"))
+            })
+          })
+
+          let order = {
+            // orderId
+            "userId": user.userId,
+            "orderStatus": 0, // 固定先以未付款送往後端
+            "orderPayment": $("#credit").prop("checked") ? 0 : 1, // 信用卡 (0) 或貨到付款 (1)
+            // todo: 之後有做超商取貨再改：$("#homeDelivery").prop("checked") ? 0 : 1
+            "orderShipment": 0, // 宅配 (0) 或超商取貨 (1)
+            "orderAddress": address,
+            "orderTotalPrice": parseInt($("li.totalPrice").find("strong").text().split("$")[1]),
+            "orderDescription": itemsInCheckoutForEcpay.toString(),
+            "receipts": receipts
+          };
+
+          fetch(`/NGFW/estore/order/pay/${user.userId}`, {
+            method: "POST",
+            body: JSON.stringify(
+              order
+            ),
+            headers: {
+              "Content-Type": "application/json"
+            }
+          })
+            .then(resp => resp.json())
+            .then(order => {
+              if (order.result) {
+                if (order.orderStatus === -1) {
+                  Swal.fire({
+                    icon: "warning",
+                    title: "商品數量不足",
+                    text: order.message
+                  })
+                    .then((result) => {
+                      if (result.isConfirmed) {
+                        window.location.href = "./cart.html";
+                        // window.location.href = "/NGFW/estore/cart.html";
+                      }
+                    })
+                } else {
+                  if (order.orderPayment === 0) {
+                    $("#result").html(order.message);
+                  } else if (order.orderPayment === 1) {
+                    Swal.fire({
+                      icon: "success",
+                      title: "新增成功",
+                      text: order.message
+                    })
+                      .then((result) => {
+                        if (result.isConfirmed) {
+                          window.location.href = "./orders.html";
+                          // window.location.href = "/NGFW/estore/orders.html";
+                        }
+                      })
+                  }
+                }
+              } else {
+                Swal.fire({
+                  icon: "warning",
+                  title: "發生錯誤",
+                  text: order.message
+                })
+                  .then((result) => {
+                    if (result.isConfirmed) {
+                      window.location.href = "./shop.html";
+                      // window.location.href = "/NGFW/estore/shop.html";
+                    }
+                  })
+              }
+            })
+            .catch(err => {
+              console.log(err);
+              Swal.fire({
+                icon: 'error',
+                title: '連線失敗',
+                text: '結帳失敗，請聯絡管理員'
+              })
+            })
+        })
+        .catch(error => {
+          console.log(error);
+          Swal.fire({
+            icon: 'error',
+            title: '更新價格失敗',
+            text: '更新價格失敗，請聯絡管理員'
+          })
+            .then((result) => {
+              if (result.isConfirmed) {
+                window.location.href = "./receipt.html";
+                // window.location.href = "/NGFW/estore/receipt.html";
+              }
+            })
+        })
+    }
+  })
+
+  // 結帳前最後一次確認商品價格是否有變動，有動的話就跳回cart.html請用戶再確認
+  const updateItemPriceInCart = async (itemIds) => {
+    const fetchPrices = itemIds.map(itemId =>
+      fetch(`/NGFW/estore/item/price/${itemId}`)
+        .then(response => response.text())
+        .then(data => {
+          let element = $(`h6[data-item-id=${itemId}]`).closest("li").find("span");
+          let originCount = element.text().split(" x ")[1];
+          let originalPrice = parseInt(element.text().split(" x ")[0].split("$")[1]);
+          if (parseInt(data) !== originalPrice) {
+            element
+              .attr("data-itempriceincart", parseInt(data))
+              .text("$" + data + " x " + originCount);
+            Swal.fire({
+              icon: 'warning',
+              title: '商品價格更動',
+              text: '部分商品價格已有更動，請再到購物車確認選購項目'
+            })
+              .then((result) => {
+                if (result.isConfirmed) {
+                  window.location.href = "./cart.html";
+                  // window.location.href = "/NGFW/estore/cart.html";
+                }
+              })
+          }
+        })
+    )
+    await Promise.all(fetchPrices);
+  };
+
+</script>
+
+
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/799bf36dfe.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

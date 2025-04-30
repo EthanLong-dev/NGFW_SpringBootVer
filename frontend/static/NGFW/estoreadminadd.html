@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>上班不要看球賽新增商品頁面</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="./vendors/fontawesome-free/css/all.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="./css/adminlte/OverlayScrollbars.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="./css/adminlte/adminlte.min.css">
+  <!-- Bootstrap 5 -->
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+
+  <!-- for ethan's part -->
+  <!-- summernote -->
+  <link rel="stylesheet" href="./vendors/summernote-0.9.0-dist/summernote-bs5.min.css">
+  <!-- Uppy -->
+  <link href="https://releases.transloadit.com/uppy/v4.13.3/uppy.min.css" rel="stylesheet">
+
+</head>
+
+<body class="hold-transition sidebar-mini">
+
+<!-- Site wrapper -->
+<div class="wrapper">
+
+  <!-- 導入共用 Navbar -->
+  <div class="Navbar"></div>
+  <!-- 導入共用 Sidebar -->
+  <div class="Sidebar"></div>
+
+  <!-- 開發畫面區塊start -->
+  <section id="mainBlock" class="content-wrapper">
+    <!-- content-header -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>新增商品</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">商品管理</a></li>
+              <li class="breadcrumb-item active">新增商品</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- content-header end -->
+
+    <!-- content，實際頁面內容 -->
+    <section class="content">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+
+
+            <div class="col-sm-6 mb-1">
+              <!-- text input -->
+              <div class="form-group">
+                <label for="item_model">商品型號</label>
+                <input id="item_model" name="item_model" type="text" class="form-control item_related"
+                       placeholder="Enter ...">
+                <div class="invalid-feedback">請輸入型號！</div>
+              </div>
+            </div>
+            <div class="col-sm-6 mb-1">
+              <!-- text input -->
+              <div class="form-group">
+                <label for="item_name">商品名稱</label>
+                <input id="item_name" name="item_name" type="text" class="form-control item_related"
+                       placeholder="Enter ...">
+                <div class="invalid-feedback">請輸入名稱！</div>
+              </div>
+            </div>
+            <!-- photos upload with Uppy -->
+            <div class="col-12 my-1 uppyArea">
+              <label>商品照片</label>
+              <div id="uppy"></div>
+            </div>
+            <!-- photos upload with Uppy end -->
+            <div class="col-sm-6 my-1">
+              <!-- text input -->
+              <div class="form-group">
+                <label for="item_color">商品顏色</label>
+                <input id="item_color" name="item_color" type="text" class="form-control item_related"
+                       placeholder="Enter ...">
+                <div class="invalid-feedback">請輸入顏色！</div>
+              </div>
+            </div>
+            <div class="col-sm-6 my-1">
+              <!-- text input -->
+              <div class="form-group">
+                <label for="item_size">商品大小</label>
+                <input id="item_size" name="item_size" type="text" class="form-control item_related"
+                       placeholder="Enter ...">
+                <div class="invalid-feedback">請輸入大小！</div>
+              </div>
+            </div>
+            <div class="col-sm-6 my-1 item_type">
+              <!-- text input -->
+              <div class="form-group">
+                <label for="item_type">商品類型</label>
+                <input id="item_type" name="item_type" type="text" class="form-control item_related"
+                       placeholder="Enter ...">
+                <div class="invalid-feedback">請輸入類型！</div>
+              </div>
+            </div>
+            <div class="col-sm-6 my-1 item_content">
+              <!-- text input -->
+              <div class="form-group">
+                <label for="item_content">商品簡介</label>
+                <input id="item_content" name="item_content" type="text" class="form-control item_related"
+                       placeholder="Enter ...">
+                <div class="invalid-feedback">請輸入簡介！</div>
+              </div>
+            </div>
+            <div class="col-sm-6 my-1 item_price">
+              <!-- text input -->
+              <div class="form-group">
+                <label for="item_price">商品價格</label>
+                <input id="item_price" name="item_price" type="text" class="form-control should_be_a_number"
+                       placeholder="Enter ...">
+                <div class="invalid-feedback">請輸入價格！</div>
+              </div>
+            </div>
+            <div class="col-sm-6 my-1">
+              <!-- text input -->
+              <div class="form-group">
+                <label for="item_stock">商品數量</label>
+                <input id="item_stock" name="item_stock" type="text" class="form-control should_be_a_number"
+                       placeholder="Enter ...">
+                <div class="invalid-feedback">請輸入數量！</div>
+              </div>
+            </div>
+
+            <!-- summernote -->
+            <div class="col-12 my-1 summernoteArea">
+              <label for="summernote">商品詳細內容</label>
+              <div id="summernote"></div>
+            </div>
+
+          </div>
+          <div class="mt-3">
+            <button id="save_item" class="btn btn-success" type="button">儲存商品</button>
+            <button id="publish_item" class="btn btn-primary" type="button">商品上架</button>
+            <button id="cancel" class="btn btn-warning" type="button">取消</button>
+          </div>
+        </div>
+        <!-- card-body end -->
+      </div>
+      <!-- card end -->
+    </section>
+    <!-- content end -->
+  </section>
+  <!-- 開發畫面區塊end -->
+
+</div>
+<!-- wrapper end -->
+
+<!-- jQuery -->
+<script src="./jquery/adminlte/jquery.min.js"></script>
+<!-- Bootstrap 5 -->
+<script src="./js/bootstrap.bundle.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="./jquery/adminlte/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="./js/adminlte/adminlte.min.js"></script>
+
+<!-- for ethan's part -->
+<!-- summernote -->
+<script src="./vendors/summernote-0.9.0-dist/summernote-bs5.js"></script>
+<!-- sweetalert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  let staff;
+
+  $(function () {
+    // Summernote
+    $('#summernote').summernote({
+      placeholder: "請輸入商品詳細內容"
+    });
+
+    staff = JSON.parse(sessionStorage.getItem("staff"));
+
+    if ((!staff) || !staff.staffId) {
+      Swal.fire({
+        icon: 'warning',
+        title: '尚未登入',
+        text: '請先登入再新增商品'
+      })
+        .then(() => {
+          window.location.href = "./staff_login.html";
+        })
+    } else if (staff.staffStatus !== 1) {
+      Swal.fire({
+        icon: 'warning',
+        title: '帳號尚未開通',
+        text: '請先開通帳號再新增商品'
+      })
+        .then(() => {
+          window.location.href = "./templateb.html";
+        })
+    } else if (staff.staffRoleId !== 1 && staff.staffRoleId !== 3) {
+      Swal.fire({
+        icon: 'warning',
+        title: '權限錯誤',
+        text: '請以正確的帳號登入再新增商品'
+      })
+        .then(() => {
+          window.location.href = "./templateb.html";
+        })
+    }
+  })
+
+  $(".Navbar").load("./layout/navbar.html");
+  $(".Sidebar").load("./layout/sidebar.html");
+
+  $(document).on('blur', 'input.item_related', function () {
+    validateFields($(this));
+  })
+
+  $(document).on('blur', 'input.should_be_a_number', function () {
+    validateFields($(this), true);
+  })
+
+  let itemPhotosPath;
+
+  // 動態確認item name是否重複
+  let itemAndModelExist;
+  $("#item_name, #item_model").on("change", function () {
+    let itemName = $("#item_name").val();
+    let itemModel = $("#item_model").val();
+    if (itemName && itemModel) {
+      fetch(`/NGFW/estoreadmin/item/checkExist/${itemModel}/${itemName}`)
+        .then(resp => resp.text())
+        .then(text => {
+          if (text === "true") {
+            $("div.uppyArea").hide();
+            $("div.summernoteArea").hide();
+            $("div.item_type").hide();
+            $("div.item_content").hide();
+            $("div.item_price").hide();
+            itemAndModelExist = true;
+          } else {
+            $("div.uppyArea").show();
+            $("div.summernoteArea").show();
+            $("div.item_type").show();
+            $("div.item_content").show();
+            $("div.item_price").show();
+            itemAndModelExist = false;
+          }
+        })
+    }
+  })
+
+  $(document).on("click", "#save_item, #publish_item", function (e) {
+    let itemStatus = e.target.id === "save_item" ? 0 : 1;
+    let isValid = validateFields($('input.item_related'));
+    let numValid = validateFields($('input.should_be_a_number'), true);
+    let summernoteValid = ($('#summernote').summernote('code').trim() !== '<p><br></p>');
+
+    if ((!isValid || !numValid) && !itemAndModelExist) {
+      Swal.fire({
+        icon: "warning",
+        title: "請再確認",
+        text: "請輸入完整資料！"
+      });
+    } else if ((!itemPhotosPath || JSON.parse(itemPhotosPath).photos.length === 0) && !itemAndModelExist) {
+      Swal.fire({
+        icon: "warning",
+        title: "請再確認",
+        text: "請先上傳照片"
+      });
+    } else if (!summernoteValid && !itemAndModelExist) {
+      Swal.fire({
+        icon: "warning",
+        title: "請再確認",
+        text: "請輸入商品詳細內容！"
+      });
+    } else {
+      const itemModel = {
+        itemModel: $('#item_model').val(),
+        staffId: staff.staffId
+      }
+      const item = {
+        itemName: $('#item_name').val(),
+        itemContent: $('#item_content').val(),
+        itemType: $('#item_type').val(),
+        itemPrice: $('#item_price').val(),
+        itemDetails: $('#summernote').summernote('code'),
+        itemPhoto: itemPhotosPath ? itemPhotosPath.toString() : "",
+        staffId: staff.staffId
+      }
+      const itemInfo = {
+        itemSize: $('#item_size').val(),
+        itemColor: $('#item_color').val(),
+        itemStock: $('#item_stock').val(),
+        itemStatus: itemStatus,
+        staffId: staff.staffId
+      }
+
+      fetch('/NGFW/estoreadmin/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          itemModel,
+          item,
+          itemInfo
+        })
+      })
+        .then(resp => resp.json())
+        .then(itemInfo => {
+          if (itemInfo.result) {
+            Swal.fire({
+              icon: "success",
+              title: "新增成功",
+              text: itemInfo.message,
+            })
+              .then(() => {
+                window.location.href = "./estoreadminitems.html";
+              })
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "新增失敗",
+              text: itemInfo.message,
+            });
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "出了點狀況！請聯絡管理員"
+          });
+        });
+    }
+  });
+
+  $(document).on("click", "#cancel", function () {
+    window.location.href = "./estoreadminitems.html";
+  })
+
+  function validateFields(items, checkNumber = false) {
+    let allValid = true;
+    items.each(function () {
+      let value = $(this).val().trim();
+      let isValid = value !== "";
+
+      if (checkNumber) {
+        isValid = isValid && !isNaN(value);
+      }
+
+      if (isValid) {
+        $(this).addClass("is-valid").removeClass("is-invalid");
+      } else {
+        $(this).addClass("is-invalid").removeClass("is-valid");
+        allValid = false;
+      }
+    });
+    return allValid;
+  }
+</script>
+
+<!-- Uppy -->
+<script type="module">
+  import {Uppy, Dashboard, XHRUpload} from "https://releases.transloadit.com/uppy/v4.13.3/uppy.min.mjs"
+
+  const uppy = new Uppy({
+    restrictions: {
+      maxFileSize: 5 * 1024 * 1024,
+      allowedFileTypes: ['image/*']
+    }
+  })
+  uppy
+    .use(Dashboard, {
+      target: '#uppy',
+      inline: true,
+      width: 1600,
+      height: 400,
+      showProgressDetails: true,
+      proudlyDisplayPoweredByUppy: true,
+    })
+    .use(XHRUpload, {
+      endpoint: '/NGFW/estoreadmin/upload',
+      fieldName: 'item_photo',
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest'
+      }
+    });
+
+  // Uppy上傳完成後回傳的東西接下來，存成 itemPhotosPath 讓新增商品去存，alert改用Swal
+  uppy.on('complete', (result) => {
+    let photoLocations = [];
+    for (let obj of result.successful) {
+      photoLocations.push(obj.response.body.photoLocation);
+    }
+    itemPhotosPath = JSON.stringify({
+      "photos": photoLocations
+    });
+  });
+</script>
+
+</body>
+
+</html>

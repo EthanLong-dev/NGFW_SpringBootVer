@@ -1,0 +1,64 @@
+# === Java compiled class and build artifacts ===
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+*.tar.gz
+*.rar
+context.xml
+
+# === Logs and temporary files ===
+*.log
+*.tmp
+
+# === virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml ===
+hs_err_pid*
+replay_pid*
+
+# === BlueJ files ===
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# === IDE configuration (Eclipse, IntelliJ IDEA, VSCode, etc.) ===
+*.iml
+.idea/
+.vscode/
+*.ipr
+*.iws
+*.bak
+*.swp
+
+# === OS-generated files ===
+.DS_Store
+Thumbs.db
+
+# === Maven / Gradle build directories ===
+target/
+build/
+out/
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+
+# === vs code ===
+.vscode
+
+# === Docker / environment files ===
+.env
+*.sh
+docker-compose.override.yml
+
+# === SSL certificates and private keys (do NOT track sensitive data) ===
+ssl/
+*.pem
+*.key
+*.crt
+
+# === MySQL initialization scripts ===
+/init-scripts/
+
+# === Spring Boot configs ===
+*.properties

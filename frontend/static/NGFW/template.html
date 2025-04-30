@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/headers.css">
+
+</head>
+
+<body>
+    <!-- 導入共用 header -->
+    <div class="headerPage"></div>
+
+    <!-- 開發畫面 -->
+    <main>
+
+    </main>
+
+    <!-- 導入共用 footer -->
+    <div class="footerPage"></div>
+    <script src="./jquery/jquery-3.7.1.min.js"></script>
+    <script>
+        $(".headerPage").load("./layout/header.html");
+        $(".footerPage").load("./layout/footer.html");
+    </script>
+
+
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/799bf36dfe.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

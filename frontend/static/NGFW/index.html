@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>上班不要看球賽</title>
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/headers/">
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/footers/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/headers.css">
+  <!-- Custom styles for this template -->
+  <link href="./css/headers.css" rel="stylesheet">
+  <link rel="stylesheet" href="./vendors/slick/slick.css">
+  <link rel="stylesheet" href="./vendors/slick/slick-theme.css">
+
+  <style>
+    main {
+      height: 100%;
+    }
+
+    div.switch_btn_el.-on {
+      background-color: lightgrey;
+    }
+
+    a {
+      text-decoration: none;
+      color: #000;
+    }
+
+    /* ================ slide ============== */
+
+    * {
+      box-sizing: border-box;
+    }
+
+    div.my_slide_class {
+      margin-bottom: 60px !important;
+    }
+
+    div.my_slide_img {
+      position: relative;
+      width: 100%;
+      height: 600px;
+      overflow: hidden;
+    }
+
+    div.my_slide_img>img {
+      width: 100%;
+      height: 100%;
+      /* max-width: 1400px; */
+      object-fit: cover;
+      object-position: center;
+      transition: transform 1s ease-in-out;
+    }
+
+    div.slick-slide.img {
+      width: 100%;
+    }
+
+    button.slick-prev {
+      left: 10px;
+      z-index: 3;
+    }
+
+    button.slick-next {
+      right: 10px;
+      z-index: 3;
+    }
+
+    /* ======================== 即時賽況 ======================== */
+    div.my_live_game {
+      height: 100%;
+    }
+
+    div.live_game {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    div.ateam_goal {
+      height: 10%;
+      position: relative;
+      top: 30%;
+    }
+
+    div.bteam_goal {
+      height: 10%;
+      position: relative;
+      top: 30%;
+    }
+
+    div.game_versus {
+      height: 10%;
+      position: relative;
+      top: 30%;
+    }
+
+    div.game_match_icon {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    /* ======================== 文章/新聞 ======================== */
+    div.my_news_container {
+      margin-bottom: 30px;
+    }
+
+    /* ======================== 商城 ======================== */
+    div.my_shop_container {
+      margin-bottom: 30px;
+    }
+
+    /* ======================== 客服 ======================== */
+    div.cs_container {
+      background-color: lightgrey;
+      position: fixed;
+      bottom: 150px;
+      right: 50px;
+      border-radius: 100%;
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- 導入共用 header -->
+  <div class="headerPage"></div>
+
+  <!-- 開發畫面 -->
+  <main class="container">
+    <div class="my_main_container">
+      <!-- =================================== slide 區塊 ============================================= -->
+      <div class="slide_container">
+        <div class="my_slide_class">
+          <div class="my_slide_img"><img class="slide-item-id" data-item-el-id="" src=""></div>
+          <div class="my_slide_img"><img class="slide-item-id" data-item-el-id="" src=""></div>
+          <div class="my_slide_img"><img class="slide-item-id" data-item-el-id="" src=""></div>
+          <div class="my_slide_img"><img class="slide-item-id" data-item-el-id="" src=""></div>
+          <!-- <div class="my_slide_img"><img src=""></div>
+          <div class="my_slide_img"><img src=""></div> -->
+        </div>
+      </div>
+
+      <!-- =================================== 即時賽況 ============================================= -->
+      <!-- <div class="switch_btn row container">
+
+        <div class="row row-cols-2 row-cols-lg-4">
+          <div class="switch_btn_el col text-center p-3 -on">
+            <h3>AAALeague</h3>
+          </div>
+          <div class="switch_btn_el col text-center p-3">
+            <h3>BBBLeague</h3>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="live_game container row mx-5 my-3">
+
+        <div id="app"></div>
+
+        <!-- <div class="live_game_date col-lg-2">
+          <div class="d-flex align-items-middle flex-column mb-3">
+            <div class="fs-2 ">00/00 (一)</div>
+            <div class="fs-2">00：00</div>
+            <div class="fs-2">XXX球場</div>
+          </div>
+        </div> -->
+        <!-- <div class="row col-lg-10">
+          <div class="team_match_container feature col">
+            <div
+              class="team_icon_a d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+              <svg class="team_icon_a_el" width="5em" height="5em">
+              </svg>
+            </div>
+            <h3 class="fs-2 text-body-emphasis">A球隊名稱</h3>
+            <p>ATeam Eng name</p>
+          </div>
+
+          <div class="col">
+            <div class="game_match_icon py-5">
+              <div class="ateam_goal">
+                <h3 class="ateam_goal_el">000</h3>
+              </div>
+              <div class="game_versus">
+                <h3 class="game_versus_el">VS</h3>
+              </div>
+              <div class="bteam_goal">
+                <h3 class="bteam_goal_el">000</h3>
+              </div>
+            </div>
+            <div class="row py-3">
+              <div class="btn_more col mx-5 py-2" style="background-color: #ccc">
+                <a href="#">看更多</a>
+              </div>
+              <div class="btn_add_stash col mx-5 py-2" style="background-color: #ccc; display: none">
+                <a href="#">加入收藏</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="team_match_container feature col">
+            <div
+              class="team_icon_b d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+              <svg class="team_icon_b_el" width="5em" height="5em">
+              </svg>
+            </div>
+            <h3 class="fs-2 text-body-emphasis">B球隊名稱</h3>
+            <p>BTeam Eng name</p>
+          </div>
+        </div> -->
+      </div>
+    </div>
+
+    <!-- =================================== 文章/新聞區塊 ============================================= -->
+
+    <div class="my_news_container container px-4 py-5">
+      <div class="my_news_title row pb-3 border-top">
+        <h3>文章/新聞</h3>
+      </div>
+    </div>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="articlelist">
+    </div>
+
+    <!-- =================================== 商城區塊 ============================================= -->
+
+    <div class="my_shop_container container px-4 py-5">
+      <div class="my_news_title row pb-3 border-top">
+        <h3>商城</h3>
+      </div>
+      <div id="items" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      </div>
+    </div>
+
+    <!-- =================================== 客服區塊 ============================================= -->
+    <!-- <div class="cs_container">
+      <svg class="cs_container_el" width=70px height=70px></svg>
+    </div>
+    </div> -->
+  </main>
+
+  <!-- 導入共用 footer -->
+  <div class="footerPage"></div>
+
+  <script src="./jquery/jquery-3.7.1.min.js"></script>
+  <script src="./js/bootstrap.bundle.min.js"></script>
+  <script src="https://kit.fontawesome.com/799bf36dfe.js" crossorigin="anonymous"></script>
+  <script src="./vendors/slick/slick.min.js"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="./js/live.js" async></script>
+
+  <script>
+    $(".headerPage").load("./layout/header.html");
+    $(".footerPage").load("./layout/footer.html");
+    // <!-- slide -->
+    $('.my_slide_class').slick({
+      arrows: true,
+      dots: true,
+      centerMode: true,
+      centerPadding: '60px',
+      slidesToShow: 1,
+      responsive: [
+        {
+          breakpoint: 768,  // 若螢幕寬度 <= 768px，則套用以下設定：
+          settings: {
+            arrows: false,
+            centerPadding: '0',
+            slidesToShow: 1
+          }
+        }
+      ]
+    });
+
+    // 設定 5 秒後觸發點擊下一張按鈕
+    setInterval(() => {
+      $('.slick-next').click();
+    }, 5000);
+
+    window.ready = function () {
+      const userData = sessionStorage.getItem("user");
+
+      if (userData) {
+        const user = JSON.parse(userData);
+        const account = user.account;
+        // 這裡可以顯示會員資訊，例如：
+        $('.usercenter').show();
+        $('.logout').show();
+        $('.account').show();
+        $('#avatar').attr('src', user.avatar);
+        $('.login').hide();
+        $('.register').hide();
+        Swal.fire({
+          icon: "success",
+          title: "歡迎回來",
+          text: "",
+        });
+      } else {
+        // 若未登入，可導向登入頁
+        // window.location.href = "login.html";
+        $('.usercenter').hide();
+        $('.logout').hide();
+        $('.account').hide();
+        $('#avatar').hide;
+        $('.login').show();
+        $('.register').show();
+      }
+    };
+
+    $(document).ready(function () {
+      $('.switch_btn_el').click(function () {
+        $('.switch_btn_el').removeClass('-on');
+        $(this).addClass('-on');
+      });
+      // todo: 這裡要加入切換即時賽況的資料呈現
+
+      // 文章/新聞區塊
+      const urlParams = new URLSearchParams(window.location.search);
+      const articleType = urlParams.get("articleType");
+      $("#dropdownMenuButton1").text(
+        articleType == 0 ? "文章" : articleType == 1 ? "新聞" : "所有分類"
+      );
+
+      var tmurl = "/NGFW/articleindex";
+      if (articleType != null) {
+        tmurl += "?articleType=" + articleType;
+      }
+      $.ajax({
+        url: tmurl,
+        method: "GET",
+        dataType: "json",
+        success: function (articles) {
+          let tableBody = $("#articlelist");
+          tableBody.empty();
+
+          let newArticles = getRandomItems(articles, 9);
+
+          newArticles.forEach((article) => {
+            // let row = `${article.articleId},`;
+            let row = `<div class="col">
+              <div class="card shadow-sm">
+                <div class="img-container">
+                  <img
+                    src="${article.newsPhoto}"
+                    onclick="location.href='./newsf/news_fbody.html?articleId=${article.articleId}'"
+                    style="max-width: 100%; height: 225px; object-fit: cover;"
+                  >
+                  </img>
+                </div>
+                <div class="card-body">
+                  <p class="card-text">
+                    ${article.mainTitle}
+                  </p>
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <small class="text-body-secondary">${article.publishDate}</small>
+                  </div>
+                </div>`;
+            tableBody.append(row);
+          });
+        },
+        error: function (xhr, status, error) {
+          console.error("Error fetching data:", error);
+        },
+      });
+
+      function getRandomItems(arr, num) {
+        let copyArr = arr.slice();
+        let randomItems = [];
+
+        for (let i = 0; i < num; i++) {
+          let randomIndex = Math.floor(Math.random() * copyArr.length);
+          randomItems.push(copyArr[randomIndex]);
+          copyArr.splice(randomIndex, 1);
+        }
+
+        return randomItems;
+      }
+
+      // 商城區塊start
+      $(function () {
+        fetch("/NGFW/estore/shop")
+          .then(response => response.json())
+          .then(items => {
+            let newItems = getRandomItems(items, 9);
+            for (let item of newItems) {
+              itemPhoto = JSON.parse(item.itemPhoto);
+              $("#items").append(
+                `<a class="item" href="./estore/merchandise.html" data-item-id="${item.itemId}" style="text-decoration: none">
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <img src=${itemPhoto.photos[0]} class="itemPhoto img-fluid"
+                      style="max-width: 100%; height: 225px; object-fit: cover;" alt="Thumbnail">
+                    <div class="card-body">
+                      <h3 class="card-text">${item.itemName}</h3>
+                      <p class="card-text">$${item.itemPrice}</p>
+                      <div class="d-flex justify-content-between align-items-center">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>`
+              )
+            }
+            sessionStorage.setItem("items", JSON.stringify(items));
+
+          })
+          .catch(error => {
+            console.log(error)
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "出了點狀況！請聯絡管理員"
+            });
+          });
+
+        // 從 sessionStorage 取得儲存的商品資料
+        let items = JSON.parse(sessionStorage.getItem("items"));
+
+        if (items && items.length > 0) {
+          // 隨機選擇 6 筆商品
+          let newRandomItems = [];
+          while (newRandomItems.length < 6) {
+            let randomIndex = Math.floor(Math.random() * items.length);
+            if (!newRandomItems.includes(items[randomIndex])) {
+              newRandomItems.push(items[randomIndex]);
+            }
+          }
+
+          newRandomItems.forEach((item, index) => {
+            let itemPhoto = JSON.parse(item.itemPhoto);
+            let slideItemId = item.itemId;
+            let imgSrc = itemPhoto.photos[0];
+
+            // 更新對應的 img 元素的 src 屬性
+            $(".my_slide_class .my_slide_img img").eq(index).attr("src", imgSrc);
+            $(".my_slide_class .my_slide_img img").eq(index).attr("data-item-el-id", slideItemId);
+          });
+
+        } else {
+          console.log("No items found in sessionStorage.");
+        }
+      });
+
+      $(document).on('click', '.slide-item-id', function () {
+        let itemId = $(this).attr("data-item-el-id");
+        localStorage.setItem("itemId", itemId);
+        window.location.href = "./estore/merchandise.html";
+      });
+      // 商城區塊end
+
+    });
+
+    $(document).on("click", ".item", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      let itemId = $(this).attr("data-item-id");
+      localStorage.setItem("itemId", itemId);
+
+      if (e.ctrlKey || e.metaKey || e.button === 1) {
+        window.open("./merchandise.html", "_blank");
+      } else {
+        window.location.href = "./estore/merchandise.html";
+      }
+    });
+  </script>
+
+</body>
+
+</html>

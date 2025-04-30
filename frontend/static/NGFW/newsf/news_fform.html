@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <title>文章/新聞</title> -->
+    <title>上班不要看球賽-文章新聞</title>
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.3/examples/headers/"
+    />
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.3/examples/footers/"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+    />
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/headers.css" />
+
+    <style>
+      /* S Start */
+      div.newsquery {
+        border: 1px solid black;
+        width: 85.3%;
+        margin: 20px auto;
+        padding: 2px 2px 2px 2px;
+      }
+      div.categorydropdown {
+        padding: 0px 5px 20px 0px;
+      }
+      .img-container {
+        width: 100%;
+        height: 225px; /* 設定容器高度 */
+        overflow: hidden;
+        cursor: pointer;
+      }
+      .img-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* S end */
+    </style>
+  </head>
+
+  <body>
+    <!-- 導入共用 header -->
+    <div class="headerPage"></div>
+
+    <!-- 開發畫面 -->
+    <main>
+      <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+          <div class="categorydropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              所有分類
+            </button>
+            <ul
+              class="dropdown-menu"
+              id="dropdownmenu_id"
+              aria-labelledby="dropdownMenuButton1"
+            >
+              <!-- <li>
+                <a class="dropdown-item" href="/NGFW/newsf/news_fform.html"
+                  >所有分類</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="/NGFW/newsf/news_fform.html?articleType=0"
+                  >文章</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="/NGFW/newsf/news_fform.html?articleType=1"
+                  >新聞</a
+                >
+              </li> -->
+              <li>
+                <a class="dropdown-item" href="/newsf/news_fform.html"
+                  >所有分類</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="/newsf/news_fform.html?articleType=0"
+                  >文章</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="/newsf/news_fform.html?articleType=1"
+                  >新聞</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div
+            class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"
+            id="articlelist"
+          ></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- 導入共用 footer -->
+    <div class="footerPage"></div>
+    <script src="../jquery/jquery-3.7.1.min.js"></script>
+    <script>
+      $(".headerPage").load("../layout/header.html");
+      $(".footerPage").load("../layout/footer.html");
+    </script>
+
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/799bf36dfe.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      $(document).ready(function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const articleType = urlParams.get("articleType");
+        $("#dropdownMenuButton1").text(
+          articleType == 0 ? "文章" : articleType == 1 ? "新聞" : "所有分類"
+        );
+
+        var tmurl = "/NGFW/articleindex";
+        if (articleType != null) {
+          tmurl += "?articleType=" + articleType;
+        }
+        $.ajax({
+          url: tmurl,
+          method: "GET",
+          dataType: "json",
+          success: function (articles) {
+            let tableBody = $("#articlelist");
+            tableBody.empty();
+            articles.forEach((article) => {
+              // let row = `<div class="col">
+              // <div class="card shadow-sm">
+              //   <div class="img-container">
+              //     <img
+              //       src="${article.newsPhoto}"
+              //       onclick="location.href='/NGFW/newsf/news_fbody.html?articleId=${article.articleId}'"
+              //     >
+              //     </img>
+              //   </div>
+              //   <div class="card-body">
+              //     <p class="card-text text-truncate">
+              //       ${article.mainTitle}
+              //     </p>
+              //     <div
+              //       class="d-flex justify-content-between align-items-center"
+              //     >
+              //       <small class="text-body-secondary">${article.publishDate}</small>
+              //     </div>
+              //   </div>`;
+
+              let row = `<div class="col">
+              <div class="card shadow-sm">
+                <div class="img-container">
+                  <img
+                    src="${article.newsPhoto}"
+                    onclick="location.href='/newsf/news_fbody.html?articleId=${article.articleId}'"
+                  >
+                  </img>
+                </div>
+                <div class="card-body">
+                  <p class="card-text text-truncate">
+                    ${article.mainTitle}
+                  </p>
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <small class="text-body-secondary">${article.publishDate}</small>
+                  </div>
+                </div>`;
+              tableBody.append(row);
+            });
+          },
+          error: function (xhr, status, error) {
+            console.error("Error fetching data:", error);
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
